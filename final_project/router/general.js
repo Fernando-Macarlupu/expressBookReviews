@@ -175,3 +175,30 @@ module.exports.getAllBooksAsync = getAllBooksAsync;
 module.exports.getBookByISBNPromise = getBookByISBNPromise;
 module.exports.getBooksByAuthorPromise = getBooksByAuthorPromise;
 module.exports.getBooksByTitlePromise = getBooksByTitlePromise;
+
+// ─── Demonstration: actually invoke the 4 methods ─────────────────────────
+// Run this file directly with `node general.js` (with the server already
+// running on port 5000) to see all 4 Axios methods execute end-to-end.
+if (require.main === module) {
+    (async () => {
+        console.log("=".repeat(60));
+        console.log("DEMO: Executing the 4 CRUD methods with Axios");
+        console.log("=".repeat(60));
+
+        // Method 1: async/await
+        await getAllBooksAsync();
+
+        // Method 2: Promise
+        await getBookByISBNPromise(1);
+
+        // Method 3: Promise
+        await getBooksByAuthorPromise("Jane Austen");
+
+        // Method 4: Promise
+        await getBooksByTitlePromise("Things Fall Apart");
+
+        console.log("\n" + "=".repeat(60));
+        console.log("DEMO COMPLETE — all 4 methods executed successfully");
+        console.log("=".repeat(60));
+    })();
+}
